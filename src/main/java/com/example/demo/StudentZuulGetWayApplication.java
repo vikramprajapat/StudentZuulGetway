@@ -7,12 +7,20 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.zuulgatway.filters.*;
 
+import brave.sampler.Sampler;
+
 @SpringBootApplication
 @EnableZuulProxy
 public class StudentZuulGetWayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentZuulGetWayApplication.class, args);
+	}
+
+	@Bean //use this distributed trace
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+
 	}
 
 	@Bean

@@ -5,8 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PreFillter extends ZuulFilter {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public boolean shouldFilter() {
@@ -22,6 +25,7 @@ public class PreFillter extends ZuulFilter {
 		System.out.println(
 				"Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString());
 		System.out.println("Inside Pre Filter");
+		logger.info("request -> {} request uri-> {}", request, request.getRequestURI());
 		return null;
 	}
 
